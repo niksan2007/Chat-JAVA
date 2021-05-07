@@ -15,6 +15,10 @@ public class ModelGuiClient {
         users.add(nameUser);
     }
 
+    protected void removeUser(String nameUser) {
+        users.remove(nameUser);
+    }
+
     protected void setUsers(Set<String> users) {
         this.users = users;
     }

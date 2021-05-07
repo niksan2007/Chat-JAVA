@@ -17,4 +17,9 @@ public class ModelGuiServer {
     protected void addUser(String nameUser, Connection connection) {
         allUsersMultiChat.put(nameUser, connection);
     }
+
+    protected void removeUser(String nameUser) {
+        allUsersMultiChat.remove(nameUser);
+    }
+
 }
