@@ -71,7 +71,7 @@ public class ViewGuiClient {
         messages.append(text);
     }
 
-    //метод обновляющий список имен подлючившихся пользователей
+    //метод обновляющий списо имен подлючившихся пользователей
     protected void refreshListUsers(Set<String> listUsers) {
         users.setText("");
         if (client.isConnect()) {
