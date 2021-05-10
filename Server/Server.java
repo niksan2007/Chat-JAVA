@@ -14,7 +14,8 @@ public class Server {
     private static ViewGuiServer gui; //объект класса представления
     private static ModelGuiServer model; //объект класса модели
     private static volatile boolean isServerStart = false; //флаг отражающий состояние сервера запущен/остановлен
- 
+
+    //метод, запускающий сервер
     protected void startServer(int port) {
         try {
             serverSocket = new ServerSocket(port);
@@ -25,6 +26,7 @@ public class Server {
         }
     }
 
+    //метод останавливающий сервер
     protected void stopServer() {
         try {
             //если серверныйСокет не имеет ссылки или не запущен

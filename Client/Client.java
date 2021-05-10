@@ -34,7 +34,7 @@ public class Client {
         }
     }
 
-    //метод подключения клиента к серверу
+    //метод подключения клиента  серверу
     protected void connectToServer() {
         //если клиент не подключен  сервере то..
         if (!isConnect) {
