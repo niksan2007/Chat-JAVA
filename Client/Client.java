@@ -18,48 +18,32 @@ public class Client {
     public void setConnect(boolean connect) {
         isConnect = connect;
     }
+public class Client {
+    private Connection connection;
+    private static ModelGuiClient model;
+    private static ViewGuiClient gui;
+    private volatile boolean isConnect = false; //флаг отобаржающий состояние подключения клиента  серверу
 
-   public class ViewGuiServer {
-    private JFrame frame = new JFrame("Запуск сервера");
-    private JTextArea dialogWindow = new JTextArea(10, 40);
-    private JButton buttonStartServer = new JButton("Запустить сервер");
-    private JButton buttonStopServer = new JButton("Остановить сервер");
-    private JPanel panelButtons = new JPanel();
-    private final Server server;
-
-    public ViewGuiServer(Server server) {
-        this.server = server;
+    public boolean isConnect() {
+        return isConnect;
     }
 
-<<<<<<< HEAD
-=======
-    //метод инициализации графического интерфейса приложения сервера
-    protected void initFrameServer() {
-        dialogWindow.setEditable(false);
-        dialogWindow.setLineWrap(true);  //автоматический перенос строки в JTextArea
-        frame.add(new JScrollPane(dialogWindow), BorderLayout.CENTER);
-        panelButtons.add(buttonStartServer);
-        panelButtons.add(buttonStopServer);
-        frame.add(panelButtons, BorderLayout.SOUTH);
-        frame.pack();
-        frame.setLocationRelativeTo(null); // при запуске отображает окно по центру экрана
-        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        //класс обработки события при закрытии окна приложения Сервера
-        frame.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                server.stopServer();
-                System.exit(0);
->>>>>>> 2238e850e5d568772cecd003498d20128f2c1423
-    //метод подключения клиента  серверу
-    protected void connectToServer() {
-        //если клиент не подключен  сервере то..
-        if (!isConnect) {
-            while (true) {
-                try {
-                    //вызываем окна ввода адреса, порта сервера
-                    String addressServer = gui.getServerAddressFromOptionPane();
-                    int port = gui.getPortServerFromOptionPane();
+    public void setConnect(boolean connect) {
+        isConnect = connect;
+    }
+public class Client {
+    private Connection connection;
+    private static ModelGuiClient model;
+    private static ViewGuiClient gui;
+    private volatile boolean isConnect = false; //флаг отобаржающий состояние подключения клиента  серверу
+
+    public boolean isConnect() {
+        return isConnect;
+    }
+
+    public void setConnect(boolean connect) {
+        isConnect = connect;
+    }etPortServerFromOptionPane();
                     //создаем сокет и объект connection
                     Socket socket = new Socket(addressServer, port);
                     connection = new Connection(socket);
@@ -76,28 +60,19 @@ public class Client {
 
     //метод, реализующий регистрацию имени пользователя со стороны клиентского приложения
     protected void nameUserRegistration() {
-        while (true) {
-            try {
-                Message message = connection.receive();
-                //приняли от сервера сообщение, если это запрос имени, то вызываем окна ввода имени, отправляем на сервер имя
-                if (message.getTypeMessage() == MessageType.REQUEST_NAME_USER) {
-                    String nameUser = gui.getNameUser();
-                    connection.send(new Message(MessageType.USER_NAME, nameUser));
-                }
-                //если сообщение - имя уже используется, выводим соответствующее оуно с ошибой, повторяем ввод имени
-                if (message.getTypeMessage() == MessageType.NAME_USED) {
-                    gui.errorDialogWindow("Данное имя уже используется, введите другое");
-                    String nameUser = gui.getNameUser();
-                    connection.send(new Message(MessageType.USER_NAME, nameUser));
-                }
-                //если имя принято, получаем множество всех подключившихся пользователей, выходим из цикла
-                if (message.getTypeMessage() == MessageType.NAME_ACCEPTED) {
-                    gui.addMessage("Сервисное сообщение: ваше имя принято!\n");
-                    model.setUsers(message.getListUsers());
-                    break;
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+public class Client {
+    private Connection connection;
+    private static ModelGuiClient model;
+    private static ViewGuiClient gui;
+    private volatile boolean isConnect = false; //флаг отобаржающий состояние подключения клиента  серверу
+
+    public boolean isConnect() {
+        return isConnect;
+    }
+
+    public void setConnect(boolean connect) {
+        isConnect = connect;
+    }
                 gui.errorDialogWindow("Произошла ошибка при регистрации имени. Попробуйте переподключиться");
                 try {
                     connection.close();
@@ -133,27 +108,19 @@ public class Client {
                 if (message.getTypeMessage() == MessageType.USER_ADDED) {
                     model.addUser(message.getTextMessage());
                     gui.refreshListUsers(model.getUsers());
-                    gui.addMessage(String.format("Сервисное сообщение: пользователь %s присоединился к чату.\n", message.getTextMessage()));
-                }
-                //аналогично для отключения других пользователей
-                if (message.getTypeMessage() == MessageType.REMOVED_USER) {
-                    model.removeUser(message.getTextMessage());
-                    gui.refreshListUsers(model.getUsers());
-                    gui.addMessage(String.format("Сервисное сообщение: пользователь %s покинул чат.\n", message.getTextMessage()));
-                }
-            } catch (Exception e) {
-                gui.errorDialogWindow("Ошибка при приеме сообщения от сервера.");
-                setConnect(false);
-                gui.refreshListUsers(model.getUsers());
-                break;
-            }
-        }
+public class Client {
+    private Connection connection;
+    private static ModelGuiClient model;
+    private static ViewGuiClient gui;
+    private volatile boolean isConnect = false; //флаг отобаржающий состояние подключения клиента  серверу
+
+    public boolean isConnect() {
+        return isConnect;
     }
 
-    //метод реализующий отключение нашего клиента от чата
-    protected void disableClient() {
-        try {
-            if (isConnect) {
+    public void setConnect(boolean connect) {
+        isConnect = connect;
+    }
                 connection.send(new Message(MessageType.DISABLE_USER));
                 model.getUsers().clear();
                 isConnect = false;

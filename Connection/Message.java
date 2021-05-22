@@ -5,36 +5,38 @@ import java.util.Set;
 
 public class Message implements Serializable {
     private MessageType typeMessage; //тип сообщения
-    private String textMessage; //текст сообщения
-    private Set<String> listUsers; //множество имен уже подлючившихся пользователей
+public class ViewGuiClient {
+    private final Client client;
+    private JFrame frame = new JFrame("Чат");
+    private JTextArea messages = new JTextArea(30, 20);
+    private JTextArea users = new JTextArea(30, 15);
+    private JPanel panel = new JPanel();
+    private JTextField textField = new JTextField(40);
+    private JButton buttonDisable = new JButton("Отключиться");
+    private JButton buttonConnect = new JButton("Подключиться");
 
-    public Message(MessageType typeMessage, String textMessage) {
-        this.textMessage = textMessage;
-        this.typeMessage = typeMessage;
-        this.listUsers = null;
+    public ViewGuiClient(Client client) {
+        this.client = client;
     }
 
-    public Message(MessageType typeMessage, Set<String> listUsers) {
-        this.typeMessage = typeMessage;
-        this.textMessage = null;
-        this.listUsers = listUsers;
-    }
-
-    public Message(MessageType typeMessage) {
-        this.typeMessage = typeMessage;
         this.textMessage = null;
         this.listUsers = null;
     }
 
-    public MessageType getTypeMessage() {
-        return typeMessage;
+public class ViewGuiClient {
+    private final Client client;
+    private JFrame frame = new JFrame("Чат");
+    private JTextArea messages = new JTextArea(30, 20);
+    private JTextArea users = new JTextArea(30, 15);
+    private JPanel panel = new JPanel();
+    private JTextField textField = new JTextField(40);
+    private JButton buttonDisable = new JButton("Отключиться");
+    private JButton buttonConnect = new JButton("Подключиться");
+
+    public ViewGuiClient(Client client) {
+        this.client = client;
     }
 
-    public Set<String> getListUsers() {
-        return listUsers;
-    }
-
-    public String getTextMessage() {
         return textMessage;
     }
 
