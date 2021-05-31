@@ -8,26 +8,59 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 
-public class ViewGuiClient {
-    private final Client client;
-    private JFrame frame = new JFrame("Чат");
-    private JTextArea messages = new JTextArea(30, 20);
-    private JTextArea users = new JTextArea(30, 15);
-    private JPanel panel = new JPanel();
-    private JTextField textField = new JTextField(40);
-    private JButton buttonDisable = new JButton("Отключиться");
-    private JButton buttonConnect = new JButton("Подключиться");
-
-    public ViewGuiClient(Client client) {
-        this.client = client;
-    }
-
+public class ViewGuiServer {
+    private JFrame frame = new JFrame("Запуск сервера");
+    private JTextArea dialogWindow = new JTextArea(10, 40);
+    private JButton buttonStartServer = new JButton("Запустить сервер");
+    private JButton buttonStopServer = new JButton("Остановить сервер");
+    private JPanel panelButtons = new JPanel();
+    private final Server server;
 
     public ViewGuiServer(Server server) {
         this.server = server;
     }
 
-<<<<<<< HEAD
+    //метод инициализации графического интерфейса приложения сервера
+    protected void initFrameServer() {
+        dialogWindow.setEditable(false);
+        dialogWindow.setLineWrap(true);  //автоматический перенос строки в JTextArea
+        frame.add(new JScrollPane(dialogWindow), BorderLayout.CENTER);
+        panelButtons.add(buttonStartServer);
+        panelButtons.add(buttonStopServer);
+        frame.add(panelButtons, BorderLayout.SOUTH);
+        frame.pack();
+        frame.setLocationRelativeTo(null); // при запуске отображает окно по центру экрана
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        //класс обработки события при закрытии окна приложения Сервера
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                server.stopServer();
+                System.exit(0);
+            }
+        });
+        frame.setVisible(true);
+
+        buttonStartServer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int port = getPortFromOptionPane();
+                server.startServer(port);
+            }
+        });
+        buttonStopServer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                server.stopServer();
+            }
+        });
+    }
+
+    //метод который добавляет в текстовое окно новое сообщение
+    public void refreshDialogWindowServer(String serviceMessage) {
+        dialogWindow.append(serviceMessage);
+    }
+
     //метод вызывающий диалоговое окно для ввода порта сервера
     protected int getPortFromOptionPane() {
         while (true) {
@@ -42,22 +75,8 @@ public class ViewGuiClient {
                 JOptionPane.showMessageDialog(
                         frame, "Введен неккоректный порт сервера. Попробуйте еще раз.",
                         "Ошибка ввода порта сервера", JOptionPane.ERROR_MESSAGE
-public class ViewGuiClient {
-    private final Client client;
-    private JFrame frame = new JFrame("Чат");
-    private JTextArea messages = new JTextArea(30, 20);
-    private JTextArea users = new JTextArea(30, 15);
-    private JPanel panel = new JPanel();
-    private JTextField textField = new JTextField(40);
-    private JButton buttonDisable = new JButton("Отключиться");
-    private JButton buttonConnect = new JButton("Подключиться");
-
-    public ViewGuiClient(Client client) {
-        this.client = client;
+                );
+            }
+        }
     }
-
-            @Override
-            public void windowClosing(WindowEvent e) {
-                server.stopServer();
-                System.exit(0);
->>>>>>> 2238e850e5d568772cecd003498d20128f2c1423
+}
