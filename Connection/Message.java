@@ -5,7 +5,19 @@ import java.util.Set;
 
 public class Message implements Serializable {
     private MessageType typeMessage; //тип сообщения
-    private String textMessage; //текст сообщения
+    private String textMessage;
+public class Message implements Serializable {
+    private MessageType typeMessage; //тип сообщения
+    private String textMessage
+public class Message implements Serializable {
+    private MessageType typeMessage; //тип сообщения
+    private String textMessage
+public class Message implements Serializable {
+    private MessageType typeMessage; //тип сообщения
+    private String textMessage
+public class Message implements Serializable {
+    private MessageType typeMessage; //тип сообщения
+    private String textMessage //текст сообщения
     private Set<String> listUsers; //множество имен уже подлючившихся пользователей
 
     public Message(MessageType typeMessage, String textMessage) {

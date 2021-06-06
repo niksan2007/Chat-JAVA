@@ -51,6 +51,38 @@ public class Client {
                     break;
                 } catch (Exception e) {
                     gui.errorDialogWindow("Произошла ошибка! Возможно Вы ввели не верный адрес сервера или порт. Попробуйте еще раз");
+    protected void connectToServer() {
+        //если клиент не подключен  сервере то..
+        if (!isConnect) {
+            while (true) {
+                try {
+                    //вызываем окна ввода адреса, порта сервера
+                    String addressServer = gui.getServerAddressFromOptionPane();
+                    int port = gui.getPortServerFromOptionPane();
+                    //создаем сокет и объект connection
+                    Socket socket = new Socket(addressServer, port);
+                    connection = new Connection(socket);
+                    isConnect = true;
+                    gui.addMessage("Сервисное сообщение: Вы подключились к серверу.\n");
+                    break;
+                } catch (Exception e) {
+                    gui.errorDialogWindow("Произошла о
+    protected void connectToServer() {
+        //если клиент не подключен  сервере то..
+        if (!isConnect) {
+            while (true) {
+                try {
+                    //вызываем окна ввода адреса, порта сервера
+                    String addressServer = gui.getServerAddressFromOptionPane();
+                    int port = gui.getPortServerFromOptionPane();
+                    //создаем сокет и объект connection
+                    Socket socket = new Socket(addressServer, port);
+                    connection = new Connection(socket);
+                    isConnect = true;
+                    gui.addMessage("Сервисное сообщение: Вы подключились к серверу.\n");
+                    break;
+                } catch (Exception e) {
+                    gui.errorDialogWindow("Произошла о
                     break;
                 }
             }
